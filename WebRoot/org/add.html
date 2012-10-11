@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="org/save" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone)">
+<div class="pageContent">
+	<div class="pageFormContent" layoutH="97">
+		<dl class="nowrap">
+			<dt>部门名称：</dt>
+			<dd>
+				<input  class="required" name="org.orgName" type="text" />
+			</dd>
+			
+		</dl>
+		<dl>
+			<dt>上级部门：</dt>
+			<dd>
+				<input   name="org.orgParentNum" value="" type="text" > 
+				<input  class="required" name="org.orgParentName" type="text"  /> 
+<!-- 				<a  class="btnLook" href="org/orgLookup.html" lookupGroup="org">查找带回</a> -->
+				<a class="btnLook"	href="org?lookup=1" lookupGroup="org">查找带回</a> 
+				<span class="info">(lookup查找回带)</span>
+			</dd>
+		</dl>
+		<h3 class="contentTitle">部门人员</h3>
+		<div>
+			<table class="list nowrap itemDetail" addButton="新建员工"
+				width="100%">
+				<thead>
+					<tr>
+						<th type="text" name="users[#index#].name" size="12"
+							fieldClass="required">姓名</th>
+						<th type="age" name="users[#index#].age" defaultVal="#index#"
+							size="12" fieldClass="digits">年龄</th>
+						<th type="del" width="60">操作</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div class="formBar">
+		<ul>
+			<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+			<li><div class="button"><div class="buttonContent"><button class="close" type="button">关闭</button></div></div></li>
+		</ul>
+	</div>
+	</div>
+	</div>
+</form>
+</body>
+</html>
