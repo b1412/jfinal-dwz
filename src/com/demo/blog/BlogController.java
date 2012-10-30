@@ -36,7 +36,7 @@ public class BlogController extends Controller {
 	}
 
 	public void edit() {
-		int id = getParaToInt(0);
+		int id = getParaToInt(0,-1);
 		Blog blog = Blog.dao.findById(id);
 		if (id == -1) {
 			blog = new Blog();
@@ -45,8 +45,6 @@ public class BlogController extends Controller {
 		}
 		setAttr("blog", blog);
 	}
-
-	// closeCurrent
 
 	public void delete() {
 		Blog.dao.deleteById(getParaToInt());
