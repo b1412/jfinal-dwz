@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
-import com.jfinal.render.DwzRender;
+import com.jfinal.ext.render.DwzRender;
 import com.jfinal.upload.UploadFile;
 
 /**

@@ -6,9 +6,9 @@ import java.util.List;
 
 import com.demo.blog.User;
 import com.jfinal.core.Controller;
+import com.jfinal.ext.render.DwzRender;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.render.DwzRender;
 
 public class OrgController extends Controller {
 
@@ -31,6 +31,9 @@ public class OrgController extends Controller {
 	public void save() {
 		Org org = getModel(Org.class);
 		List<User> users = new ArrayList<User>();
+		
+		// ParamsFilterHandler 中算出users.size。目前源码丢失了，机器上反编译工具用不了了...
+		// 需要这个的朋友自己实现一下吧或者反编译之前项目里面的jfinal-ext.jar。
 		int size = getAttrForInt("users.size");
 		for (int i = 0; i < size; i++) {
 			User user = getModel(User.class, "users[" + i + "]");
