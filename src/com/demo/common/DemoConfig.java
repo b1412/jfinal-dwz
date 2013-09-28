@@ -1,6 +1,7 @@
 package com.demo.common;
 
 import com.alibaba.druid.filter.stat.StatFilter;
+import com.alibaba.druid.wall.WallFilter;
 import com.demo.blog.BlogController;
 import com.demo.blog.UserController;
 import com.demo.org.OrgController;
@@ -13,11 +14,10 @@ import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.handler.RenderingTimeHandler;
 import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
-import com.jfinal.ext.plugin.tablebind.TableNameStyle;
+import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
 import com.jfinal.plugin.activerecord.SqlReporter;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
-import com.jfinal.plugin.ehcache.EhCachePlugin;
 
 /**
  * API引导式配置
@@ -50,13 +50,12 @@ public class DemoConfig extends JFinalConfig {
         DruidPlugin dp = new DruidPlugin(getProperty("jdbcUrl"), getProperty("user"), getProperty("password"));
         dp.setFilters("stat");
         dp.addFilter(new StatFilter());
-        // WallFilter wall = new WallFilter();
-        // wall.setDbType("mysql");
-        // dp.addFilter(wall);
+        WallFilter wall = new WallFilter();
+        wall.setDbType("mysql");
+        dp.addFilter(wall);
         me.add(dp);
-        me.add(new EhCachePlugin());
         // 配置ActiveRecord插件
-        AutoTableBindPlugin arp = new AutoTableBindPlugin(dp, TableNameStyle.LOWER);
+        AutoTableBindPlugin arp = new AutoTableBindPlugin(dp, SimpleNameStyles.LOWER);
         me.add(arp);
         arp.setShowSql(true);
         SqlReporter.setLogger(true);
@@ -73,7 +72,7 @@ public class DemoConfig extends JFinalConfig {
      */
     public void configHandler(Handlers me) {
         me.add(new RenderingTimeHandler());
-//        me.add(new ParamsFilterHandler());
+        // me.add(new ParamsFilterHandler());
         me.add(new DruidStatViewHandler("/druid"));
     }
 
