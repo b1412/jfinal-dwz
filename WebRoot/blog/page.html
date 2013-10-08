@@ -6,8 +6,10 @@
 		<ul class="searchContent">
 			<li>
 				<label>标题：</label>
-				<input name="title" type="text"/>
-			</li>
+				<input name="blog.f_title" type="text"/>
+			<li>
+				<label>作者：</label>
+				<input name="user.f_name" type="text"/>
 		</ul>
 		<div class="subBar">
 			<ul>
@@ -30,9 +32,11 @@
 	</div>
 	<table class="table" width="100%" layoutH="138">
 		<thead>
+		<#if pageInfo.sorterField??&&pageInfo.sorterField =='title'>${(pageInfo.sorterDirection)!}</#if>
 			<tr>
-				<th width="120">标题</th>
+				<th width="120" orderField="title" class="">标题</th>
 				<th>内容</th>
+				<th>作者</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,6 +44,7 @@
 			<tr target="itemid" rel="${item.id}">
 				<td>${item.title!""}</td>
 				<td>${item.content!""}</td>
+				<td>${item.name!""}</td>
 			</tr>
 		</#list>
 		</tbody>

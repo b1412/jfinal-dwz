@@ -1,7 +1,9 @@
 <#macro simpleForm actionUrl>
 	<form id="pagerForm" method="post" action="${actionUrl}">
- 		<input type="hidden" name="pageNum" value="1" />
- 		<input type="hidden" name="numPerPage" value="20" />
+ 		<input type="hidden" name="pageInfo.pageNum" value="1" />
+ 		<input type="hidden" name="pageInfo.numPerPage" value="20" />
+ 		<input type="hidden" name="pageInfo.orderField" value="${(pageInfo.orderField)!}" />
+	    <input type="hidden" name="pageInfo.orderDirection" value="${(pageInfo.orderDirection)!}" />
 	</form>
 </#macro>
 <#macro pagination>
